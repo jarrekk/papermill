@@ -186,7 +186,8 @@ def execute_notebook(notebook,
     if output is not None:
         # Write final Notebook to disk.
         write_ipynb(nb, output)
-    return nbformat.writes(nb)
+    # always return notebook object
+    return nb
 
 
 def _parameterize_notebook(nb, kernel_name, parameters):
