@@ -49,8 +49,6 @@ def preprocess(self, nb, resources):
         preprocessors to pass variables into the Jinja engine.
 
     """
-    output_path = nb.metadata.papermill['output_path']
-
     # Reset the notebook.
     for cell in nb.cells:
         # Reset the cell execution counts.
@@ -69,7 +67,7 @@ def preprocess(self, nb, resources):
             cell.outputs = []
 
     # Execute each cell and update the output in real time.
-    with futures.ThreadPoolExecutor(max_workers=1) as executor:
+    with futures.ThreadPoolExecutor(max_workers=4) as executor:
 
         # Generate the iterator
         if self.progress_bar:
@@ -79,7 +77,6 @@ def preprocess(self, nb, resources):
 
         for index, cell in execution_iterator:
             cell.metadata["papermill"]["status"] = RUNNING
-            # future = executor.submit(write_ipynb, nb, output_path)
             t0 = datetime.datetime.utcnow()
             try:
                 if not cell.source:
@@ -101,7 +98,6 @@ def preprocess(self, nb, resources):
                 cell.metadata['papermill']['duration'] = (
                     t1 - t0).total_seconds()
                 cell.metadata['papermill']['status'] = COMPLETED
-                # future.result()
     return nb, resources
 
 
