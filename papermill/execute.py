@@ -151,8 +151,6 @@ def execute_notebook(notebook,
         progress_bar (bool): Flag for whether or not to show the progress bar.
         log_output (bool): Flag for whether or not to write notebook output to stderr.
     """
-    print("Input Notebook:  %s" % get_pretty_path(notebook))
-    print("Output Notebook: %s" % get_pretty_path(output))
     nb = load_notebook_node(notebook)
 
     # Parameterize the Notebook.
