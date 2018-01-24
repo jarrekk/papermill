@@ -79,7 +79,7 @@ def preprocess(self, nb, resources):
 
         for index, cell in execution_iterator:
             cell.metadata["papermill"]["status"] = RUNNING
-            future = executor.submit(write_ipynb, nb, output_path)
+            # future = executor.submit(write_ipynb, nb, output_path)
             t0 = datetime.datetime.utcnow()
             try:
                 if not cell.source:
@@ -101,7 +101,7 @@ def preprocess(self, nb, resources):
                 cell.metadata['papermill']['duration'] = (
                     t1 - t0).total_seconds()
                 cell.metadata['papermill']['status'] = COMPLETED
-                future.result()
+                # future.result()
     return nb, resources
 
 
