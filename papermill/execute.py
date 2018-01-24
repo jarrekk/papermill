@@ -135,7 +135,7 @@ def execute_notebook(notebook,
                      output=None,
                      parameters=None,
                      kernel_name=None,
-                     progress_bar=True,
+                     progress_bar=False,
                      log_output=False):
     """Executes a single notebook locally.
 
